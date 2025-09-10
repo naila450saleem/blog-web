@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogVista | Professional Blogging Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Scheme */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --accent: #f97316;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Button Styles with Animations */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: #0da271;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+        }
+
+        .btn-accent:hover {
+            background-color: #e56a12;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(249, 115, 22, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        /* Featured Posts */
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Card Styles with Animations */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .card-excerpt {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 1rem;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.8rem;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .read-time {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+            margin: 5rem 0;
+            border-radius: 16px;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                margin: 1.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-blog"></i>
+                    BlogVista
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="articles">Articles</a></li>
+                    <li><a href="#" class="nav-link" data-page="categories">Categories</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Sign In</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Stories, Ideas, and Expertise</h1>
+                <p>Join thousands of readers on BlogVista – the platform where writers share their knowledge and experiences with the world.</p>
+                <button class="btn btn-accent">
+                    <i class="fas fa-feather-alt"></i>
+                    Start Reading
+                </button>
+            </div>
+        </section>
+
+        <!-- Featured Posts -->
+        <section class="container">
+            <h2 class="section-title">Featured Posts</h2>
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Technology</span>
+                        <h3 class="card-title">The Future of Web Development in 2023</h3>
+                        <p class="card-excerpt">Explore the latest trends and technologies that are shaping the future of web development this year.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">Sarah Johnson</div>
+                            </div>
+                            <div class="read-time">8 min read</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Business</span>
+                        <h3 class="card-title">How to Build a Successful Startup in 5 Steps</h3>
+                        <p class="card-excerpt">Learn the essential steps to transform your idea into a successful business venture.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">Michael Chen</div>
+                            </div>
+                            <div class="read-time">12 min read</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Productivity</span>
+                        <h3 class="card-title">10 Productivity Hacks for Remote Workers</h3>
+                        <p class="card-excerpt">Maximize your efficiency while working from home with these proven strategies.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">Emma Rodriguez</div>
+                            </div>
+                            <div class="read-time">6 min read</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-book-open"></i>
+                    View All Articles
+                </button>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container">
+            <div class="cta">
+                <h2>Join Our Community of Writers</h2>
+                <p>Share your knowledge, experiences, and stories with a global audience. Start publishing on BlogVista today.</p>
+                <button class="btn btn-accent">
+                    <i class="fas fa-pen-fancy"></i>
+                    Start Writing
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Articles Page -->
+    <div id="articles" class="page-content">
+        <section class="container">
+            <h2 class="section-title">All Articles</h2>
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div class="btn-group">
+                    <button class="btn btn-outline">All Topics</button>
+                    <button class="btn btn-outline">Technology</button>
+                    <button class="btn btn-outline">Business</button>
+                    <button class="btn btn-outline">Productivity</button>
+                    <button class="btn btn-outline">Lifestyle</button>
+                </div>
+            </div>
+            
+            <div class="card-grid">
+                <!-- Repeat of cards from home plus more -->
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Lifestyle</span>
+                        <h3 class="card-title">Minimalism: Living With Less</h3>
+                        <p class="card-excerpt">Discover how minimalism can lead to a more meaningful and stress-free life.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">Jessica Lee</div>
+                            </div>
+                            <div class="read-time">7 min read</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Marketing</span>
+                        <h3 class="card-title">Digital Marketing Strategies for 2023</h3>
+                        <p class="card-excerpt">Stay ahead of the curve with these innovative digital marketing approaches.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">Alex Morgan</div>
+                            </div>
+                            <div class="read-time">10 min read</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1102&q=80" alt="Blog Post">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Leadership</span>
+                        <h3 class="card-title">The Art of Effective Team Management</h3>
+                        <p class="card-excerpt">Learn how to inspire and lead your team to achieve exceptional results.</p>
+                        <div class="card-footer">
+                            <div class="author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Author">
+                                </div>
+                                <div class="author-name">David Wilson</div>
+                            </div>
+                            <div class="read-time">14 min read</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 3rem 0;">
+                <button class="btn btn-outline">
+                    <i class="fas fa-spinner"></i>
+                    Load More Articles
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Categories Page -->
+    <div id="categories" class="page-content">
+        <section class="container">
+            <h2 class="section-title">Browse Categories</h2>
+            
+            <div class="card-grid">
+                <!-- Category Cards -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Technology">
+                    </div>
+                    <div class="card-content" style="text-align: center;">
+                        <h3 class="card-title">Technology</h3>
+                        <p class="card-excerpt">Latest trends in tech, programming, and digital innovation</p>
+                        <button class="btn btn-outline">Explore</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Business">
+                    </div>
+                    <div class="card-content" style="text-align: center;">
+                        <h3 class="card-title">Business</h3>
+                        <p class="card-excerpt">Entrepreneurship, startups, and business strategies</p>
+                        <button class="btn btn-outline">Explore</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Productivity">
+                    </div>
+                    <div class="card-content" style="text-align: center;">
+                        <h3 class="card-title">Productivity</h3>
+                        <p class="card-excerpt">Tips and tools to maximize your efficiency</p>
+                        <button class="btn btn-outline">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-content">
+        <section class="container">
+            <h2 class="section-title">About BlogVista</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Our Team" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;">
+                    
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Our Story</h3>
+                    <p style="color: var(--gray); line-height: 1.8;">
+                        BlogVista was founded in 2020 with a simple mission: to create a platform where writers and readers could connect through meaningful content. What started as a small community of passionate bloggers has grown into a diverse platform with thousands of articles across various categories.
+                    </p>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card" style="text-align: center;">
+                        <div class="card-content">
+                            <i class="fas fa-bullseye" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 class="card-title">Our Mission</h3>
+                            <p class="card-excerpt">To empower writers to share their knowledge and help readers discover valuable content that enriches their lives.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="text-align: center;">
+                        <div class="card-content">
+                            <i class="fas fa-eye" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 class="card-title">Our Vision</h3>
+                            <p class="card-excerpt">To become the most inclusive and diverse blogging platform where every voice can be heard.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="text-align: center;">
+                        <div class="card-content">
+                            <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 class="card-title">Our Growth</h3>
+                            <p class="card-excerpt">With over 500k monthly readers and 10k+ published articles, we're growing faster than ever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-content">
+        <section class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Contact Information</h3>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 1.2rem; margin-right: 1rem;"></i>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Address</h4>
+                                <p style="color: var(--gray);">Office #12, Business Tower, Blue Area, Islamabad, Pakistan</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <i class="fas fa-envelope" style="color: var(--primary); font-size: 1.2rem; margin-right: 1rem;"></i>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Email</h4>
+                                <p style="color: var(--gray);">info@blogvista.com</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <i class="fas fa-phone" style="color: var(--primary); font-size: 1.2rem; margin-right: 1rem;"></i>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Phone</h4>
+                                <p style="color: var(--gray);">+92 306-7451075</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Send us a Message</h3>
+                    
+                    <form>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Name</label>
+                            <input type="text" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--light-gray);">
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Email</label>
+                            <input type="email" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--light-gray);">
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message</label>
+                            <textarea rows="5" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--light-gray);"></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About BlogVista</h3>
+                    <p>BlogVista is a platform for writers and readers to share ideas, knowledge, and experiences with a global community.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="articles">Articles</a></li>
+                        <li><a href="#" class="nav-link" data-page="categories">Categories</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Health & Wellness</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Subscribe</h3>
+                    <p>Stay updated with our latest articles and news.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address" style="padding: 0.8rem; width: 100%; margin-bottom: 1rem; border-radius: 50px; border: none;">
+                        <button class="btn btn-secondary" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BlogVista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple page navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pageContents.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
