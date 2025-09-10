@@ -36,146 +36,221 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* Header Styles */
+header {
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
 
-        .logo i {
-            margin-right: 0.5rem;
-        }
+.logo i {
+    margin-right: 0.5rem;
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+}
 
-        .nav-links li {
-            margin-left: 2rem;
-        }
+.nav-links li {
+    margin-left: 2rem;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
 
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
+.nav-links a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
 
-        .nav-links a:hover:after {
-            width: 100%;
-        }
+.nav-links a:hover:after {
+    width: 100%;
+}
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+.nav-links a:hover {
+    color: var(--primary);
+}
 
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
 
-        /* Button Styles with Animations */
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* 🔹 Hamburger Button */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--dark);
+}
 
-        .btn i {
-            margin-right: 0.5rem;
-        }
+/* Button Styles with Animations */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
-        }
+.btn i {
+    margin-right: 0.5rem;
+}
 
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
-        }
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+}
 
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: white;
-            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
-        }
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
+}
 
-        .btn-secondary:hover {
-            background-color: #0da271;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
-        }
+.btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
+.btn-secondary:hover {
+    background-color: #0da271;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+}
 
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
 
-        .btn-accent {
-            background-color: var(--accent);
-            color: white;
-            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
-        }
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
 
-        .btn-accent:hover {
-            background-color: #e56a12;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(249, 115, 22, 0.3);
-        }
+.btn-accent {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+}
+
+.btn-accent:hover {
+    background-color: #e56a12;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(249, 115, 22, 0.3);
+}
+
+
+/* Close Button Style */
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--dark);
+}
+
+
+
+/* Mobile Navbar */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--dark);
+  }
+
+  .auth-buttons {
+    display: none; /* desktop buttons hide in mobile */
+  }
+
+  .mobile-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .close-btn {
+    display: block; /* show only in mobile menu */
+    align-self: flex-end;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+        
 
         /* Hero Section */
         .hero {
@@ -432,6 +507,102 @@
             display: block;
         }
 
+        /* Auth Forms */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            padding: 2rem 0;
+        }
+
+        .auth-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .auth-form .btn {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-alt {
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .auth-alt a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-alt a:hover {
+            text-decoration: underline;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -467,32 +638,55 @@
             .card-grid {
                 grid-template-columns: 1fr;
             }
+
+            .auth-form {
+                padding: 1.5rem;
+            }
+
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <i class="fas fa-blog"></i>
-                    BlogVista
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="articles">Articles</a></li>
-                    <li><a href="#" class="nav-link" data-page="categories">Categories</a></li>
-                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                </ul>
-                <div class="auth-buttons">
-                    <button class="btn btn-outline">Sign In</button>
-                    <button class="btn btn-primary">Sign Up</button>
-                </div>
-            </nav>
-        </div>
-    </header>
+  
+   <!-- Header -->
+<header>
+  <div class="container">
+    <nav class="navbar">
+      <a href="#" class="logo" data-page="home">
+        <i class="fas fa-blog"></i>
+        BlogVista
+      </a>
+
+      <!-- Hamburger Button -->
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+
+         <!-- Close Button -->
+  <span class="close-btn" id="close-btn"><i class="fas fa-times"></i></span>
+
+        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+        <li><a href="#" class="nav-link" data-page="articles">Articles</a></li>
+        <li><a href="#" class="nav-link" data-page="categories">Categories</a></li>
+        <li><a href="#" class="nav-link" data-page="about">About</a></li>
+        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+      </ul>
+
+      <div class="auth-buttons">
+        <button class="btn btn-outline" data-page="signin">Sign In</button>
+        <button class="btn btn-primary" data-page="signup">Sign Up</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
 
     <!-- Home Page -->
     <div id="home" class="page-content active">
@@ -613,7 +807,6 @@
             </div>
             
             <div class="card-grid">
-                <!-- Repeat of cards from home plus more -->
                 <!-- Card 1 -->
                 <div class="card">
                     <div class="card-img">
@@ -668,7 +861,7 @@
                         <div class="card-footer">
                             <div class="author">
                                 <div class="author-img">
-                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Author">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Author">
                                 </div>
                                 <div class="author-name">David Wilson</div>
                             </div>
@@ -804,7 +997,7 @@
                             <i class="fas fa-phone" style="color: var(--primary); font-size: 1.2rem; margin-right: 1rem;"></i>
                             <div>
                                 <h4 style="margin-bottom: 0.2rem;">Phone</h4>
-                                <p style="color: var(--gray);">+92 306-7451075</p>
+                                <p style="color: var(--gray);">+92 306-4398410</p>
                             </div>
                         </div>
                     </div>
@@ -842,6 +1035,67 @@
                         <button class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sign In Page -->
+    <div id="signin" class="page-content">
+        <section class="container auth-container">
+            <div class="auth-form">
+                <h2>Sign In to Your Account</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••">
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+                <p class="auth-alt">
+                    Don't have an account? <a href="#" data-page="signup">Sign up here</a>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup" class="page-content">
+        <section class="container auth-container">
+            <div class="auth-form">
+                <h2>Create Your Account</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                <p class="auth-alt">
+                    Already have an account? <a href="#" data-page="signin">Sign in here</a>
+                </p>
             </div>
         </section>
     </div>
@@ -896,30 +1150,78 @@
     </footer>
 
     <script>
-        // Simple page navigation
+        // Page navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('.nav-link, .auth-buttons button, .logo, .auth-alt a');
             const pageContents = document.querySelectorAll('.page-content');
             
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pageContents.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show the target page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+                
+                // Update URL hash
+                window.location.hash = pageId;
+            }
+            
+            // Add click event listeners to all navigation elements
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     const targetPage = this.getAttribute('data-page');
-                    
-                    // Hide all pages
-                    pageContents.forEach(page => {
-                        page.classList.remove('active');
-                    });
-                    
-                    // Show target page
-                    document.getElementById(targetPage).classList.add('active');
-                    
-                    // Scroll to top
-                    window.scrollTo(0, 0);
+                    showPage(targetPage);
                 });
             });
+            
+            // Check if there's a hash in the URL and show that page
+            if (window.location.hash) {
+                const pageId = window.location.hash.substring(1);
+                if (document.getElementById(pageId)) {
+                    showPage(pageId);
+                }
+            }
+            
+            // Form submission handlers
+            const signInForm = document.querySelector('#signin form');
+            const signUpForm = document.querySelector('#signup form');
+            
+            if (signInForm) {
+                signInForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Sign in functionality would be implemented here!');
+                    showPage('home');
+                });
+            }
+            
+            if (signUpForm) {
+                signUpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Sign up functionality would be implemented here!');
+                    showPage('home');
+                });
+            }
         });
+
+    const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const closeBtn = document.getElementById('close-btn');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
     </script>
 </body>
 </html>
